@@ -13,10 +13,11 @@
 * try {
 *   pr($DB->addUser($u, false));
 * } catch (Exception $e) {
-*   echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+*   echo 'Error de validación: ',  $e->getMessage(), "\n";
 * }
 **/
 
+require_once '../config/load.php';
 require_once 'medoo.php';
 
 function pr($v, $d = true) {
@@ -38,10 +39,7 @@ class DB {
   }
 
   private function connect() {
-    $configFile = isset($_ENV['CONFIG_DB']) ? $_ENV['CONFIG_DB'] : '../config/DB.ini';
-    $config = parse_ini_file($configFile);
-
-    $this->db = new medoo($config);
+    $this->db = new medoo($_ENV['DB']);
   }
 
   function info() {
@@ -74,7 +72,7 @@ class DB {
     }
 
     if( $this->userExists($user['id']) ) {
-      throw new Exception('Usuario existente.');
+      throw new Exception('Afiliado existente.');
     }
 
     if( !preg_match("/[a-z]+/i", $user['first_name']) ) {
@@ -91,16 +89,12 @@ class DB {
       'display_name_c' => trim(join(' ', array($user['first_name'], $user['last_name'])))
     );
 
-    pr($user, false);
-    pr($user_cstm, false);
-
     $this->db->insert('contacts', $user);
 
     $this->db->insert('contacts_cstm', $user_cstm);
 
     return $user;
   }
-
 }
 
 $DB = new DB();

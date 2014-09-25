@@ -1,4 +1,3 @@
 .DS_STORE
-
-config/*
-!config/*.example
+config/config.ini
+datos/

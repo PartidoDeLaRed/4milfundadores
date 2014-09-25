@@ -82,16 +82,7 @@ if (($mail !== $codigo) || ($mail == null) || ($codigo == null))
 
         if ($_POST["dni"])
         {
-            
-//            if ($_POST["dni"] == ""){
-//                
-//                echo "<center>Se produjo un error al intentar subir el formulario, el campo DNI no puede estar vacio.</center>";
-//
-//            die;
-//                
-//                
-//            }
-            
+
             $nombre = $_POST["nombre"];
 
             $apellido = $_POST["apellido"];
@@ -99,7 +90,7 @@ if (($mail !== $codigo) || ($mail == null) || ($codigo == null))
 
             $dato = $hora . "\t" . "$mail\t" . "$nombre $apellido\t" . "$barrio\t" . "ENVIO EL FORMULARIO\n" . "<br>";
             $ruta_txt = "datos/datos_diarios.html";
-            
+
             agrega_a_txt($dato, $ruta_txt);
 
         } else
@@ -262,8 +253,8 @@ if ($enviado == 1)
 	<meta name="author" content="TBSOFT" />
 
 	<title>Formulario</title>
-    
-	
+
+
     <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -272,7 +263,7 @@ if ($enviado == 1)
 
   ga('create', 'UA-53108826-1', 'auto');
   ga('send', 'pageview');
-  
+
 
 function validateForm()
 {
@@ -348,7 +339,7 @@ span.rojo{font-family:"Verdana", sans-serif; font-size:16.0px; line-height:1.13e
 
 
 
-    
+
 </head>
 
 <body text="#000000" style="background-color:#ffffff;background-image:url(wpimages/wpa21cc0b3_06.png);background-repeat:repeat;background-position:top center;background-attachment:scroll; text-align:center; height:1000px; /*Master Page Body Style*/ /*Page Body Style*/" >

@@ -4,3 +4,6 @@ port = "3306"
 username = "root"
 password = ""
 database_name = "4milfundadores"
+
+[IMGS]
+path = "datos/imgs"
