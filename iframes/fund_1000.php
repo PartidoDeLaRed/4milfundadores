@@ -65,7 +65,7 @@ PPImgInit('roll_4','../wpimages/wp59179083_06.png','../wpimages/wp9c500d87_06.pn
 <a href="fund_250.php" onMouseOut="PPImgAction('out','roll_2')" onMouseOver="PPImgAction('over','roll_2')"><img src="../wpimages/wpd671cae1_06.png" width="57" height="10" border="0" id="roll_2" name="roll_2" title="" alt="250" onload="OnLoadPngFix()" style="position:absolute;left:2px;top:8px;"></a>
 <a href="fund_500.php" onMouseOut="PPImgAction('out','roll_3')" onMouseOver="PPImgAction('over','roll_3')"><img src="../wpimages/wp017cf716_06.png" width="57" height="10" border="0" id="roll_3" name="roll_3" title="" alt="500" onload="OnLoadPngFix()" style="position:absolute;left:60px;top:8px;"></a>
 <a href="fund_750.php" onMouseOut="PPImgAction('out','roll_4')" onMouseOver="PPImgAction('over','roll_4')"><img src="../wpimages/wp59179083_06.png" width="57" height="10" border="0" id="roll_4" name="roll_4" title="" alt="750" onload="OnLoadPngFix()" style="position:absolute;left:118px;top:8px;"></a>
-<iframe id="ifrm_3" name="ifrm_3" src="https://www.4milfundadores.com/nombres_php/1000.php" frameborder="0" scrolling="no" style="position:absolute;left:0px;top:28px;width:930px;height:500px;"></iframe>
+<iframe id="ifrm_3" name="ifrm_3" src="../nombres_php/1000.php" frameborder="0" scrolling="no" style="position:absolute;left:0px;top:28px;width:930px;height:500px;"></iframe>
 </div>
 </body>
 </html>
