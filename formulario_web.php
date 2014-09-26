@@ -346,14 +346,14 @@ span.rojo{font-family:"Verdana", sans-serif; font-size:16.0px; line-height:1.13e
 
 
 
-<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:960px;height:1400px; __AddCode="Master DIV Tag">
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:960px;height:1400px;" __AddCode="Master DIV Tag">
 
 <img src="imagenes/head_formulario.jpg" width="930" height="245" border="0" >
 <br /><br />
 
 <div style="margin-left:auto;margin-right:auto;position:relative; position:relative;left:40px;">
 
-<form id="formulario" name="formulario" onsubmit="return validateForm()" action="http://www.4milfundadores.com/formulario_web.php<?php
+<form id="formulario" name="formulario" onsubmit="return validateForm()" action="formulario_web.php<?php
 
 echo "?mail=" . $_GET["mail"] . "&codigo=" . $_GET["codigo"] . "&barrio=" . $_GET["barrio"] . "&enviado=1"
 
@@ -431,7 +431,7 @@ echo "?mail=" . $_GET["mail"] . "&codigo=" . $_GET["codigo"] . "&barrio=" . $_GE
     <option value="12" >12</option>
 </select>
 
-<select  name="ano" size="1" ">
+<select  name="ano" size="1">
     <option value="" selected >-&nbsp;AÑO&nbsp;-</option>
     <option value="1994" >1998</option>
     <option value="1995" >1997</option>

@@ -1,0 +1,33 @@
+php_value display_errors On
+
+Options +FollowSymlinks
+RewriteEngine On
+
+IndexIgnore *
+<Files .htaccess>
+  order allow,deny
+  deny from all [L]
+</Files>
+
+AddDefaultCharset utf-8
+AddCharset utf-8 .css .js .json .rss .vtt .xml .html
+
+<IfModule mod_headers.c>
+  Header set X-UA-Compatible "IE=Edge,chrome=1"
+  # mod_headers can't match by content-type, but we don't want to send this header on *everything*...
+  <FilesMatch "\.(js|css|gif|png|jpe?g|pdf|xml|oga|ogg|m4a|ogv|mp4|m4v|webm|svg|svgz|eot|ttf|otf|woff|ico|webp|appcache|manifest|htc|crx|oex|xpi|safariextz|vcf)$" >
+    Header unset X-UA-Compatible
+  </FilesMatch>
+</IfModule>
+
+ErrorDocument 404 "P&aacute;gina no encontrada."
+
+# RewriteCond %{REQUEST_URI} app/
+# RewriteRule . http://www.domain.com/$1 [R=301,NC]
+
+# No permito acceso a los archivos adentro de /app
+RedirectMatch 404 ".*\/app\/.*"
+
+# Intento de pretty URLs a los archivos .php, pero no me funciona.
+# RewriteCond %{REQUEST_URI}\.php -f
+# RewriteRule .* %{REQUEST_URI}.php?%{QUERY_STRING} [L,NC]
