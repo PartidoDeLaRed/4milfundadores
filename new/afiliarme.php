@@ -11,6 +11,13 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
   try {
     $DB->createAfiliado($afiliado);
+
+    /**
+    * Falta el manejo de las imágenes, vienen en:
+    * $_FILES["foto1"]
+    * $_FILES["foto2"]
+    * $_FILES["foto3"]
+    **/
   } catch( DBValidationException $e ) {
     echo $e->getMessage();
     die();
