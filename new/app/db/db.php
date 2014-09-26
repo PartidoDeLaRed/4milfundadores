@@ -147,7 +147,8 @@ class DB {
       'est_civil' => $a['est_civil'],
       'direccion' => $a['direccion'],
       'telefono' => $a['telefono'],
-      'mail' => $a['mail']
+      'mail' => $a['mail'],
+      'source_site' => '4milfundadores'
       // 'mosaico', => $a['mosaico'] // Falta agregar a la DB
     );
 
