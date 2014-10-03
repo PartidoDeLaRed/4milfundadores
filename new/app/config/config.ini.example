@@ -6,4 +6,4 @@ password = ""
 database_name = "4milfundadores"
 
 [IMGS]
-path = "datos/imgs"
+path = "/new/app/fotos/"

@@ -1,4 +1,4 @@
-<?
+<?php
 $configFile = realpath(dirname(__FILE__) . '/config.ini');
 if( !$configFile ) $configFile = $_ENV['CONFIG'];
 

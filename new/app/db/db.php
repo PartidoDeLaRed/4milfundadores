@@ -11,7 +11,7 @@
 * );
 *
 * try {
-*   pr($DB->createAfiliado($u, false));
+*   pr($DB->saveAfiliado($u, false));
 * } catch (Exception $e) {
 *   echo 'Error de validación: ',  $e->getMessage(), "\n";
 * }
@@ -22,7 +22,7 @@ require_once dirname(__FILE__).'/medoo.php';
 
 function pr($v, $d = true) {
   echo '<pre>'; print_r($v); echo '</pre>';
-  if($d){ echo '<!-- Died -->'; die(); }
+  if( $d ){ echo '<!-- Died -->'; die(); }
 }
 
 class DBValidationException extends Exception { }
@@ -30,6 +30,10 @@ class DBValidationException extends Exception { }
 class DB {
   public $db;
 
+  public $allowedFotoTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG);
+  public $allowedFotoSize = 6; // MB
+
+  public $attrsFotos = array('foto1', 'foto2', 'foto3');
   public $attrsAfiliado = array(
     'dni',
     'nombres',
@@ -59,12 +63,6 @@ class DB {
     return $this->db->info();
   }
 
-  function afiliadoExists($dni) {
-    return $this->db->has('afiliados', array(
-      'dni' => $dni
-    ));
-  }
-
   private function select_keys($arry, $keys) {
     $a = array();
 
@@ -77,7 +75,13 @@ class DB {
     return $a;
   }
 
-  function createAfiliado($a) {
+  function afiliadoExists($dni) {
+    return $this->db->has('afiliados', array(
+      'dni' => $dni
+    ));
+  }
+
+  function validateAfiliado($a) {
     $errors = array();
 
     if( !preg_match("/^[0-9]+$/", $a['dni']) ) {
@@ -128,14 +132,59 @@ class DB {
       array_push($errors, 'Dirección inválida.');
     }
 
-    if( !preg_match("/[a-zA-Z]+/", $a['direccion']) ) {
-      array_push($errors, 'Dirección inválida.');
+    if( count($errors) > 0 ) {
+      throw new DBValidationException( join($errors, "\n") );
+    }
+
+    return true;
+  }
+
+  function validateFotos($files) {
+    $errors = array();
+
+    if( !$this->hasFile($files, 'foto1') ) {
+      array_push($errors, 'Tenés que subir el frente del DNI Tarjeta o la primer hoja con foto del DNI libro.');
+    }
+
+    if( !$this->hasFile($files, 'foto2') ) {
+      array_push($errors, 'Tenés que subir el dorso del DNI Tarjeta o la segunda hoja del DNI libro.');
+    }
+
+    foreach( $this->attrsFotos as $f ) {
+      if( !$this->hasFile($files, $f) ) continue;
+
+      if( !$this->validateFotoType($files[$f]) ) {
+        array_push($errors, $f.' sólo puede ser JPG o PNG.');
+      }
+
+      if( !$this->validateFotoSize($files[$f]) ) {
+        array_push($errors, $f.' no puede pesar más de '.$this->allowedFotoSize.'MB.');
+      }
     }
 
     if( count($errors) > 0 ){
       throw new DBValidationException(join($errors, "\n"));
     }
 
+    return true;
+  }
+
+  function hasFile($files, $file) {
+    return isset($files[$file])
+        && is_uploaded_file($files[$file]['tmp_name'])
+        && file_exists($files[$file]['tmp_name']);
+  }
+
+  function validateFotoType($file) {
+    $type = exif_imagetype($file['tmp_name']);
+    return in_array($type, $this->allowedFotoTypes);
+  }
+
+  function validateFotoSize($file) {
+    return $file['size'] <= ($this->allowedFotoSize * 1024 * 1024);
+  }
+
+  function saveAfiliado($a) {
     $afiliado = array(
       'dni' => $a['dni'],
       'nombres' => $a['nombres'],
@@ -155,6 +204,23 @@ class DB {
     $this->db->insert('afiliados', $afiliado);
 
     return true;
+  }
+
+  function saveFotos($afiliado, $files) {
+    $path = rtrim($_ENV['IMGS']['path'], '/');
+
+    foreach( $this->attrsFotos as $f ) {
+      if( !$this->hasFile($files, $f) ) continue;
+
+      $file = $files[$f];
+      $ext = end(explode(".", $file['name']));
+      $filedest = $afiliado['dni'] . '_' . $f . '.' . $ext;
+      $dest = join('/', array($path, $filedest));
+
+      if( !move_uploaded_file($file['tmp_name'], $dest) ) {
+        throw new Exception('Se produjo un error al guardar las fotos.');
+      }
+    }
   }
 }
 
