@@ -1,0 +1,25 @@
+{
+  "name": "4milfundadores",
+  "version": "0.0.1",
+  "description": "Plataforma de afiliados",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:PartidoDeLaRed/4milfundadores.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/PartidoDeLaRed/4milfundadores/issues"
+  },
+  "homepage": "https://github.com/PartidoDeLaRed/4milfundadores",
+  "devDependencies": {
+    "gulp": "~3.8.8",
+    "gulp-pleeease": "~1.0.4",
+    "gulp-stylus": "~1.3.3",
+    "nib": "~1.0.4"
+  }
+}

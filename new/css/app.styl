@@ -1,0 +1,147 @@
+@require nib;
+
+azul = #228AB0
+negro = #444
+marron = #89766C
+marronClaro = lighten(marron, 80%)
+
+global-reset();
+
+::selection {
+  background: #972D15;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  color: negro;
+  background-color: #f9f9f9;
+}
+
+main {
+  display: block;
+  margin: 0 auto;
+  padding: 0 .6em;
+  max-width: 420px;
+}
+
+header {
+  margin-bottom: 2em;
+
+  .logo {
+    display: block;
+    margin: 0 auto .3em;
+  }
+
+  nav {
+    text-align: center;
+
+    button {
+      position: relative;
+      display: inline-block;
+      margin: 0 .8em;
+      padding: .4em 0 0;
+      border: none;
+      border-radius: 0;
+      font-family: inherit;
+      font-size: 1em;
+      text-align: center;
+      cursor: pointer;
+      color: inherit;
+      outline: 0;
+      background: transparent;
+
+      &:after {
+        content: '';
+        display: block;
+        margin: .4em auto 0;
+        width: 1%;
+        height: 3px;
+        transition: width .1s linear;
+      }
+
+      &:hover {
+        &:after {
+          width: 100%;
+          background: lightgray;
+        }
+      }
+
+      &.active {
+        &:after {
+          width: 100%;
+          background: azul;
+        }
+      }
+    }
+  }
+}
+
+form {
+  padding: 0 2em;
+
+  h1 {
+    position: relative;
+    margin: 3em 0 1em;
+    font-size: 1.1em;
+    font-weight: bold;
+
+    span {
+      position: absolute;
+      left: -1.7em;
+      top: -.3em;
+      display: inline-block;
+      border: 1px solid azul;
+      width: 1.5em;
+      height: 1.5em;
+      line-height: 1.35em;
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: normal;
+      color: azul;
+      border-radius: 100%;
+    }
+  }
+
+  label {
+    display: block;
+    color: gray;
+    margin-bottom: .5em;
+  }
+
+  input[type="file"] {
+    display: block;
+    margin: 0 0 2em;
+    font-size: 1em;
+    max-width: 100%;
+    overflow: ellipsis;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    margin: 1em 0;
+    padding: .5em;
+    border: none;
+    border-radius: 1px;
+    font-family: inherit;
+    font-size: 2em;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background: azul;
+    transition: all .1s linear;
+    &:hover {
+      background: lighten(azul, 10%);
+    }
+    &:active {
+      background: darken(azul, 30%);
+    }
+  }
+}
+
+@require form;

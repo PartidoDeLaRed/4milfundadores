@@ -1,4 +1,5 @@
 .DS_STORE
-new/config/config.ini
 config/config.ini
 datos/
+new/config/config.ini
+node_modules/
