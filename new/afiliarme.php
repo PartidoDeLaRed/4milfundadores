@@ -15,9 +15,11 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
     $DB->validateAfiliado($afiliado);
     $DB->validateFotos($_FILES);
 
-  } catch( DBValidationException $e ) {
+  } catch(DBValidationException $e) {
+
     echo $e->getMessage();
     die();
+
   }
 
   try {
@@ -26,8 +28,10 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
     $DB->saveAfiliado($afiliado, $_FILES);
 
   } catch( Exception $e ) {
+
     echo $e->getMessage();
     die();
+
   }
 
   include 'app/views/gracias.html';
