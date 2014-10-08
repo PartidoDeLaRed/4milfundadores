@@ -13,7 +13,7 @@
 
 <main>
   <header>
-    <img class="logo" width="118" src="img/logo1.svg" onerror="this.onerror=null;this.src='img/logo.png'" alt="Partido De La Red">
+    <img class="logo" width="118" src="img/logo.svg" onerror="this.onerror=null;this.src=this.src.replace(/svg$/, 'png')" alt="Partido De La Red">
     <nav>
       <button class="active" type="button">Afiliarme</button>
       <button type="button">Más Info</button>
@@ -29,7 +29,7 @@
     <label for="foto2">Dorso DNI tarjeta o segunda hoja del DNI libro:</label>
     <input type="file" name="foto2" id="foto2" title="Dorso DNI tarjeta o segunda hoja del DNI libro." required>
 
-    <label for="foto3">En el caso que haya cambio de domicilio en DNI libro, subirlo también:</label>
+    <label for="foto3">En el caso que hayas cambiado tu domicilio en el DNI libro, también lo necesitamos:</label>
     <input type="file" name="foto3" id="foto3">
 
     <h1><span>2</span> Completá tus datos personales</h1>
@@ -122,6 +122,8 @@
 </main>
 
 <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+<script src="//polyfill.io"></script>
+<script src="js/app.min.js"></script>
 <? require 'app/partials/analytics.html' ?>
 
 </body>
